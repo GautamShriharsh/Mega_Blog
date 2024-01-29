@@ -2,6 +2,7 @@ import React,{ useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import authService from './appwrite/auth'
 import { login, logout} from './store/authSlice'
+import { Header, Footer} from './components/index'
 import './App.css'
 
 function App() {
@@ -14,7 +15,7 @@ function App() {
       if (userData) {
         dispatch(login({userData}))
       }
-      else {s
+      else {
         dispatch(logout())
       }
     })
@@ -24,8 +25,17 @@ function App() {
   },[])
 
   return !loading ? (
-    <div className='min-h-screen flex flex-wrap content-between bg-gray-400'>Testing</div>
-  ) : (null)
+    <div className='text-white bg-gray-400'>
+     <div >
+      <Header />
+      <main>
+       TODO: <Outlet />
+        
+      </main>
+      <Footer />
+     </div>
+    </div>
+  ) : null
 }
 
 export default App
