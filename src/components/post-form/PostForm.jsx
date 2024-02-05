@@ -5,7 +5,7 @@ import appwriteService from '../../appwrite/config'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
-function PostForm() {
+function PostForm({post}) {
    const {register, handleSubmit, watch, setValue, control, getValues} = useForm({
     defaultValues: {
         title: post?.title || '',
