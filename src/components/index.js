@@ -6,7 +6,7 @@ import LogoutBtn  from './header/LogoutBtn'
 import RTE from './RTE'
 import Signup from "./pages/Signup";
 import Login from "./Login";
-import Postcard from "./PostCard"
+import PostCard from "./PostCard"
 import PostForm from  './post-form/PostForm'
 export  {
     Header,
@@ -17,6 +17,6 @@ export  {
     RTE,
     Signup,
     Login,
-    Postcard,
+    PostCard,
     PostForm
 }
