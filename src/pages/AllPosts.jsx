@@ -23,6 +23,7 @@ function AllPosts() {
                 $id={post.$id}
                 title={post.title}
                 featuredImage={post.featuredImage}
+                // {...post} --> we can also pass the post into postcard by spreading its properties
                 />
              </div>   
             ))}

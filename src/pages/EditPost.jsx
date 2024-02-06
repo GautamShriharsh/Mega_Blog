@@ -27,7 +27,7 @@ function EditPost() {
          <div className='py-8'>
              <Container>
                 <PostForm 
-                
+                post = {post}
                 />
              </Container>
          </div>
