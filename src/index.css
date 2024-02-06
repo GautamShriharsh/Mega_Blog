@@ -71,3 +71,11 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 } */
+
+body {
+  color: black;
+}
+
+.header-text-black {
+  color: black;
+}

@@ -41,7 +41,7 @@ function Header() {
    <header className='py-3 shadow bg-gray-500' >
     <Container>
       <nav className='flex'>
-        <div className='mr-4'>
+        <div className='mr-4 text-black'>
           <Link to='/'>
             <Logo width='70-px'/>
           </Link>
@@ -52,7 +52,7 @@ function Header() {
               <li key={item.name}>
                 <button
                 onClick={() => navigate(item.slug)}
-                className='inline-bock px-6 py-2 duration-200 hover:bg-blue-100 rounded-full'
+                className='inline-bock px-6 py-2 duration-200 hover:bg-blue-100 rounded-full header-text-black'
                 >{item.name}</button>
               </li>
             ) : null
