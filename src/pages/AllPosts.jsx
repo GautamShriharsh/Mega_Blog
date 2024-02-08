@@ -16,13 +16,11 @@ function AllPosts() {
     return (
     <div className='w-full py-8'>
       <Container>
-        <div className="flex flex-wrap">
+        <div className="flex flex-wrap text-black">
             {posts.map((post) => (
              <div key={post.$id} className='p-2 w-1/4'>
                 <PostCard 
-                $id={post.$id}
-                title={post.title}
-                featuredImage={post.featuredImage}
+                {...post}
                 // {...post} --> we can also pass the post into postcard by spreading its properties
                 />
              </div>   

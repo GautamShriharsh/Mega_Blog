@@ -16,14 +16,15 @@ function PostForm({post}) {
    })
 
    const navigate = useNavigate()
-   const userData = useSelector((state) => state.userData)
+   const userData = useSelector((state) => state.auth.userData)
+//    console.log(userData)
 
    const submit = async (data) => {
     if (post) {
-        const file = data.image[0] ? appwriteService.uploadFile(data.image[0]) : null
+        const file = data.image[0] ? await appwriteService.uploadFile(data.image[0]) : null
 
         if (file) {
-            appwriteService.deleteFile(post.featuredImage)
+            await appwriteService.deleteFile(post.featuredImage)
         }
 
         const dbPost = await appwriteService.updatePost(post.$id, {
@@ -42,10 +43,7 @@ function PostForm({post}) {
            if (file) {
             const fileId = file.$id
             data.featuredImage = fileId
-            const dbPost = await appwriteService.createPost({
-                ...data,
-                userId: userData.$id,
-            })
+            const dbPost = await appwriteService.createPost({ ...data, userId: userData.$id });
             if (dbPost) {
                 navigate(`/post/${dbPost.$id}`)
             }
@@ -85,11 +83,11 @@ function PostForm({post}) {
   
     return (
       <form onSubmit={handleSubmit(submit)} className="flex flex-wrap">
-      <div className="w-2/3 px-2">
+      <div className="w-2/3 px-2 text-black text-bold">
           <Input
               label="Title :"
               placeholder="Title"
-              className="mb-4"
+              className="mb-4 text-black"
               {...register("title", { required: true })}
           />
           <Input
@@ -103,7 +101,7 @@ function PostForm({post}) {
           />
           <RTE label="Content :" name="content" control={control} defaultValue={getValues("content")} />
       </div>
-      <div className="w-1/3 px-2">
+      <div className="w-1/3 px-2 text-black">
           <Input
               label="Featured Image :"
               type="file"
@@ -129,6 +127,8 @@ function PostForm({post}) {
           <Button type="submit" bgColor={post ? "bg-green-500" : undefined} className="w-full">
               {post ? "Update" : "Submit"}
           </Button>
+        
+          
       </div>
   </form>
   )

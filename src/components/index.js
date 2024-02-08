@@ -7,7 +7,7 @@ import Button from "./Button";
 import RTE from './RTE'
 import Input from './Input'
 import Signup from "./Signup";
-import Login from "./Login.jsx";
+import Login from "./Login";
 import PostCard from "./PostCard"
 import PostForm from  './post-form/PostForm'
 import AuthLayout from './AuthLayout'
