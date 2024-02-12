@@ -9,6 +9,7 @@ function Post() {
     const [post, setPost] = useState(null);
     const { slug } = useParams();
     const navigate = useNavigate();
+    const [loading, setLoading] = useState(true)
 
     const userData = useSelector((state) => state.auth.userData);
 
@@ -19,6 +20,7 @@ function Post() {
             appwriteService.getPost(slug).then((post) => {
                 if (post) {
                     setPost(post)
+                    setLoading(false)
                 }
                 else navigate('/')
             })
@@ -32,6 +34,22 @@ function Post() {
                 navigate('/')
              }
         })
+    }
+
+    if (loading) {
+        return (
+            <div className="w-full py-8 mt-4 text-center">
+                <Container>
+                    <div className="flex flex-wrap">
+                        <div className="p-2 w-full">
+                            <h1 className="text-2xl font-bold text-black hover:text-white">
+                                Loading...
+                            </h1>
+                        </div>
+                    </div>
+                </Container>
+            </div>
+        );
     }
   
   
@@ -48,11 +66,11 @@ function Post() {
                     {isAuthor && (
                         <div className="absolute right-6 top-6">
                             <Link to={`/edit-post/${post.$id}`}>
-                                <Button bgColor="bg-green-500" className="mr-3">
+                                <Button bgColor="bg-green-300" className="mr-3">
                                     Edit
                                 </Button>
                             </Link>
-                            <Button bgColor="bg-red-500" onClick={deletePost}>
+                            <Button bgColor="bg-red-400" onClick={deletePost}>
                                 Delete
                             </Button>
                         </div>
@@ -61,7 +79,7 @@ function Post() {
                 <div className="w-full mb-6">
                     <h1 className="text-2xl font-bold text-black">{post.title}</h1>
                 </div>
-                <div className="browser-css text-black">
+                <div className="browser-css text-black w-3/4 mx-auto text-left">
                     {parse(post.content)}
                     </div>
             </Container>
