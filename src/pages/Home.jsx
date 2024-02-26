@@ -8,17 +8,23 @@ function Home() {
     const [posts, setPosts] = useState([])
     const [loading, setLoading] = useState(true)
     const authStatus = useSelector((state) => state.auth.status)
+    
+   
+        useEffect(() => {
+            
+                appwriteService.getPosts([]).then((posts) => {
+                    if (posts) {
+                    setPosts(posts.documents)
+                    setLoading(false)
+                    }
+                    })
+            
+            
+        },[])
+    
+    
 
-    useEffect(() => {
-        appwriteService.getPosts([]).then((posts) => {
-            if (posts) {
-            setPosts(posts.documents)
-            setLoading(false)
-            }
-            })
-    },[])
-
-    if (loading && authStatus) {
+    if (loading ) {
         return (
             <div className="w-full py-8 mt-4 text-center">
                 <Container>
@@ -34,7 +40,7 @@ function Home() {
         );
     }
   
-    else if (posts.length === 0 ) {
+    else if (!authStatus ) {
         return (
             <div className="w-full py-8 mt-4 text-center">
                 <Container>
